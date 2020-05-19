@@ -1,5 +1,5 @@
 # CircuitMath
-Automatic generation of electric circuit equations + solution
+Automatic generation of electric circuit equations + solution.
 
 For documentation see:
 
@@ -11,3 +11,6 @@ gcc -W circuitg.c algorithm.c verso.c creatematrix.c ludcmp.c createb.c lubksb.c
 
 The program uses C code from Numerical Recipes (ludcmp.c, nrutil.c, lubksb.c).
 
+
+
+If you use this code, please acknowledge the paper and this repo, and if possible notify me. 
