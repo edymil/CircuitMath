@@ -16,7 +16,7 @@ void tension(int r, float** res, float** current, float** volt);
 void lubksb(float** a,int n,int* indx,float* b);
 void ludcmp(float** a,int n,int* indx, float* d);
 
-main()
+int main()
 {
 /*RAPPRESENTAZIONE DEL CIRCUITO NEL PROGRAMMA*/
 /*creazione vettore*/
@@ -27,9 +27,9 @@ FILE *fp;
 int** circuit;
 
 if ((fp = fopen("MatriceGiulio.dat","r")) == NULL)
-printf("\nNon è stato possbile aprire il file dati!\n");
+printf("\nInput file could not be opened!\n");
 else
-printf("\nFile dati caricato correttamente!\n");
+printf("\nInput file correctly loaded\n");
 	
 fgets(dummy,MAXSTR,fp);    /*legge la prima riga testuale*/
 fgets(dummy,MAXSTR,fp);    /*legge la seconda riga testuale*/
@@ -37,13 +37,13 @@ fscanf(fp,"%d ",&r);       /*legge la terza riga (dimensioni matrice)*/
 
 circuit = (int**)malloc(r*sizeof(int*));
 if (circuit == NULL) {
-	printf("Non ho abbastanza memoria perl'allocazione\n");
+	printf("Not enough memory for allocation\n");
 	exit(1); 
 }
 for(i=0; i<r; i++){
 	circuit[i] = (int*)malloc(r*sizeof(int));
 	if (circuit == NULL) {
-		printf("Non ho abbastanza memoria perl'allocazione\n");
+		printf("Not enough memory for allocation\n");
 		exit(1); 
 	}
 }
@@ -81,13 +81,13 @@ float** res;
 
 res = (float**)malloc(r*sizeof(float*));
 if (res == NULL) {
-	printf("Non ho abbastanza memoria perl'allocazione\n");
+	printf("Not enough memory for allocation\n");
 	exit(1); 
 }
 for(i=0; i<r; i++){
 	res[i] = (float*)malloc(r*sizeof(float));
 	if (res == NULL) {
-		printf("Non ho abbastanza memoria perl'allocazione\n");
+		printf("Not enough memory for allocation\n");
 		exit(1); 
 	}
 }
@@ -116,7 +116,7 @@ float s;
 int* perm;
 perm = (int*)malloc(m*sizeof(int));
 if (perm == NULL) {
-	printf("Non ho abbastanza memoria perl'allocazione\n");
+	printf("Not enough memory for allocation\n");
 	exit(1); 
 }
 
@@ -129,13 +129,13 @@ float** volt;
 
 volt = (float**)malloc(r*sizeof(float*));
 if (volt == NULL) {
-	printf("Non ho abbastanza memoria perl'allocazione\n");
+	printf("Not enough memory for allocation\n");
 	exit(1); 
 }
 for(i=0; i<r; i++){
 	volt[i] = (float*)malloc(r*sizeof(float));
 	if (volt == NULL) {
-		printf("Non ho abbastanza memoria perl'allocazione\n");
+		printf("Not enough memory for allocation\n");
 		exit(1); 
 	}
 }
@@ -149,7 +149,7 @@ for(i=0; i<=r-1; i++)            /*mi scansiona i valori numerici e li assegna a
 float *b;
 b = (float*)malloc(m*sizeof(float));
 if (b == NULL) {
-	printf("Non ho abbastanza memoria perl'allocazione\n");
+	printf("Not enough memory for allocation\n");
 	exit(1); 
 }
 createb(b, r, c, m, volt, mcurrent);
@@ -162,7 +162,7 @@ printf("%f\n", b[i]);*/
 float *x;
 x = (float*)malloc(m*sizeof(float));
 if (x == NULL) {
-	printf("Non ho abbastanza memoria perl'allocazione\n");
+	printf("Not enough memory for allocation\n");
 	exit(1); 
 }
 createb(x, r, c, m, volt, mcurrent);
@@ -175,7 +175,7 @@ printf("%f\n", x[i]);*/
 float *p;
 p = (float*)malloc(m*sizeof(float));
 if (p == NULL) {
-	printf("Non ho abbastanza memoria perl'allocazione\n");
+	printf("Not enough memory for allocation\n");
 	exit(1); 
 }
 j=0;
@@ -184,7 +184,7 @@ while(j==0){
 		for (j=0;j<=m-1;j++)
 			p[i] += (a[i][j]*x[j]);
 		if (p[i]-b[i]<=ERROR && p[i]-b[i]>=-ERROR){
-			printf("\nIl %do risultato relativo al sistema di equazioni del metodo delle maglie è corretto entro la terza cifra decimale.\n", i+1);
+			printf("\nResult %d in the mesh system of equations is correct up to the third decimal figure.\n", i+1);
 			j=1;
 		}
 		else
