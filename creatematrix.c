@@ -14,13 +14,13 @@ float** a;
 
 a = (float**) malloc(m*sizeof(float*));
 if (a == NULL) {
-	printf("Non ho abbastanza memoria perl'allocazione\n");
+	printf("Not enough memory for allocation\n");
 	exit(1); 
 }
 for (i=0; i<m; i++){
 	a[i] = (float*) malloc(m*sizeof(float));
 	if (a == NULL) {
-		printf("Non ho abbastanza memoria perl'allocazione\n");
+		printf("Not enough memory for allocation\n");
 		exit(1); 
 	}
 }
