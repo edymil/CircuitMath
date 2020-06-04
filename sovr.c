@@ -31,13 +31,13 @@ float **current;
 
 current = (float**) malloc(r*r*sizeof(float));
 if (current == NULL) {
-	printf("Non ho abbastanza memoria perl'allocazione\n");
+	printf("Not enough memory for allocation\n");
 	exit(1); 
 }
 for (i=0; i<r; i++){
 	current[i] = (float*) malloc(r*sizeof(float));
 	if (current == NULL) {
-		printf("Non ho abbastanza memoria perl'allocazione\n");
+		printf("Not enough memory for allocation\n");
 		exit(1); 
 	}
 }
@@ -56,13 +56,13 @@ for(i=0; i<=r-1; i++){
 		sum=sum+current[i][j];
 	}
 	if(sum>=0.0001 && sum<=-0.0001){
-		printf("\nC'è stato un errore nel calcolo delle correnti!\n");
+		printf("\nThere was an error while calculating currents\n");
 		k=1;
 		break;
 	}
 }
 if(k==0)
-	printf("\nI valori ottenuti per le correnti rispettano la legge dei nodi!\n");
+	printf("\nComputed currents fit the law of nodes\n");
 
 /*ora per avere nel link giusto il valore della corrente devo togliere tutti i valori negativi da current*/
 for(i=0; i<=r-1; i++)
@@ -76,9 +76,9 @@ FILE *fp;
 fp = fopen ("current.dat","w");
 
 /*Scrivo su file*/
-fprintf(fp,"Nella matrice delle correnti sono salvati i valori della corrente tra i vari punti del circuito.\n");
-fprintf(fp,"\nSe la corrente va dal punto A al punto B nella matrice è individuata nella casella con indici AB per riga e colonna, mentre la casella BA è vuota.\n");
-fprintf(fp,"Ecco la matrice:\n");
+fprintf(fp,"The current matrix stores the currents between nodes in the circuit.\n");
+fprintf(fp,"\nEntry with (row, column) indexes (A, B) identifies a current flowing from node A to node B, while the corresponding (B, A) entry is empty.\n");
+fprintf(fp,"Current matrix:\n");
 
 for(i=0; i<=r-1; i++){
 	for(j=0; j<r-1; j++)
@@ -87,9 +87,9 @@ for(i=0; i<=r-1; i++){
 }	
 
 if (!fp)
-	printf ("\nC'è stato un errore nella scrittura del file 'corrent.dat'!\n");
+	printf ("\nError in writing file current.dat\n");
 else
-	printf("\nIl file current.dat è stato scritto correttamente!\n");
+	printf("\nFile current.dat has been written\n");
 
 
 return current;
