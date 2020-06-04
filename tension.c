@@ -28,21 +28,6 @@ for(i=0; i<=r-1; i++)
 			fall[i][j]= current[i][j]*res[i][j];
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*CALCOLO LA TENSIONE IN UNA MAGLIA CHE HA LA BATTERIA*/
 /*cerco dov'è la batteria (l'ultimo che trovo)*/
 for(i=0; i<=r-1; i++)
@@ -98,27 +83,6 @@ for(i=0; i<=r-1; i++)
 			}
 
 /*printf("prova\n");*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*CALCOLO LA TENSIONE NEGLI ALTRI RAMI*/
@@ -217,59 +181,29 @@ while(end==0){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*verifica leggi fisiche*/
 /*printf("%f\n", tensi[iii][jjj]);*/
 if(tensi[iii][jjj]<=0.0001 && tensi[iii][jjj]>=-0.0001)
-	printf("\nI valori ottenuti per le tensioni rispettano le leggi fisiche!\n");
+	printf("\nResults pass the final check\n");
 
 /*STAMPA FILE ESTERNO*/
 FILE *fp;
 fp = fopen ("tension.dat","w");
 
 /*Scrivo su file*/
-fprintf(fp,"Nella matrice delle tensioni iniziali sono salvati i valori delle tensioni all'inizio del ramo. Per inizio si intende rispetto al verso della corrente\n");
+fprintf(fp,"The initial voltage matrix stores voltages at the start of each branch, where the start of branch is defined by current flow\n");
 for(i=0; i<=r-1; i++){
 	for(j=0; j<r-1; j++)
 		fprintf(fp, "%f\t", tensi[i][j]);
 	fprintf(fp, "%f\n", tensi[i][r-1]);
 }	
-fprintf(fp,"Nella matrice delle tensioni finali sono salvati i valori delle tensioni alla fine del ramo.\n");
+fprintf(fp,"The final voltage matrix stores the voltages at the end of each branch.\n");
 for(i=0; i<=r-1; i++){
 	for(j=0; j<r-1; j++)
 		fprintf(fp, "%f\t", tensf[i][j]);
 	fprintf(fp, "%f\n", tensf[i][r-1]);
 }	
-fprintf(fp,"Nella matrice delle cadute di potenziale sono salvate le cadute di potenzioni su ogni resistenza.\n");
+fprintf(fp,"The voltage matrix stores voltages across each resistor.\n");
 for(i=0; i<=r-1; i++){
 	for(j=0; j<r-1; j++)
 		fprintf(fp, "%f\t", fall[i][j]);
@@ -277,14 +211,9 @@ for(i=0; i<=r-1; i++){
 }	
 
 if (!fp)
-	printf ("\nC'è stato un errore nella scrittura del file 'tension.dat'!\n");
+	printf ("\nError while writing tension.dat\n");
 else
-	printf("\nIl file tension.dat è stato scritto correttamente!\n");
-
-
-
-
-
+	printf("\nFile tension.dat has been written\n");
 
 /*fine function*/
 }
