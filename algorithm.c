@@ -91,7 +91,7 @@ for(j=0;j<=r-1; j++)
 		if(d[i][j]==1)
 			continue;
 		if(d[i][j]==0 && j==n-1)
-			printf("\nC'è un errore nel block 2 per il riconoscimento delle maglie indipendenti!\n");
+			printf("\nError in block 2 while searching for independent meshes\n");
 
 
 /*BLOCK 3*/
@@ -122,13 +122,13 @@ int **indm;
 
 indm = (int**) malloc(c*sizeof(int*));
 if (indm == NULL) {
-	printf("Non ho abbastanza memoria perl'allocazione\n");
+	printf("Not enough memory for allocation\n");
 	exit(1); 
 }
 for (i=0; i<r; i++){
 	indm[i] = (int*) malloc(c*sizeof(int));
 	if (indm == NULL) {
-		printf("Non ho abbastanza memoria perl'allocazione\n");
+		printf("Not enough memory for allocation\n");
 		exit(1); 
 	}
 }
