@@ -7,46 +7,46 @@ int r, c, **mcurrent;
 int k, i, j, n, ii, jj, nloop;
 
 for(k=1;k<c-1;k=k+r+1){
-	/* conto quanto link ha ogni maglia (n)*/
+	/* count the number of links in each mesh */
 	n=0;
-	ii = -1; /*inizializzo ii a -1 per sovrascriverla una sola volta*/
+	ii = -1; /* initialize ii to -1 to overwrite it just once*/
 	for(i=0; i<=r-1; i++)
 		for(j=0; j<=r-1; j++){
 			if(mcurrent[i][j+k]==1){
 				n++;
 				/*printf("i=%d\tj=%d\n", i, j);*/
 			}
-			if(n==1 && ii==-1){ /*mi salvo le coordinate del primo 1 che trovo*/
+			if(n==1 && ii==-1){ /* store coordinates of the first detected 1*/
 				ii=i;
 				jj=j;
-				/*printf("secondo i=%d\tj=%d\n", i, j);*/
+				/*printf("second i=%d\tj=%d\n", i, j);*/
 			}
 		}
 	n=n/2;
 	/*printf("n=%d\n", n);*/
-	/*stampa totale*/
-	/*printf("prima\n");
+	/*global printout*/
+	/*printf("first\n");
 	for(i=0; i<=r-1; i++){
 		for(j=0; j<r-1; j++)
 			printf("%d", mcurrent[i][j+k]);
 	printf("%d\n", mcurrent[i][r-1+k]);
 	}*/
-	mcurrent[jj][ii+k]=-1; /*pongo a -1 il simmetrico del primo uno che ho trovato -> oriento il primo lato*/
-	nloop=1; /* ho orientato il primo lato della maglia*/
-        /*ora cerco il lato successivo della maglia nella riga jj*/
-	i=jj; /*fisso la riga*/
+	mcurrent[jj][ii+k]=-1; /* store a -1 in the symmetric position of the first detected 1 -> set direction of first side*/
+	nloop=1; /* first branch of mesh has been directed*/
+        /*next, look for the next branch of mesh in row jj*/
+	i=jj; /*select row*/
 	do{
-		for(j=0; j<=r-1; j++) /*controllo le colonne in cerca di un 1*/
+		for(j=0; j<=r-1; j++) /*check columns searching for a 1*/
 			if(mcurrent[i][j+k]==1){
-				mcurrent[j][i+k]=-1; /*pongo a -1 il simmetrico*/
-		                nloop++;             /*mi segno che ho orientato un altro lato*/
+				mcurrent[j][i+k]=-1; /*set the symmetric element to -1*/
+		                nloop++;             /*increase the number of directed sides*/
 				/*printf("nloop=%d\n", nloop);*/
-		                i=j;                 /*ricordo la prossima riga da guardare*/
+		                i=j;                 /*select next row*/
 				break;
 			}
-	}while(nloop<n); /*itero il procedimento finché non ho orientato tutti i rami*/
-	/*stampa totale*/
-	/*printf("dopo\n");
+	}while(nloop<n); /*iterate procedure until direction found for all branches*/
+	/*global printout*/
+	/*printf("after\n");
 	for(i=0; i<=r-1; i++){
 		for(j=0; j<r-1; j++)
 			printf("%d", mcurrent[i][j+k]);
@@ -54,5 +54,5 @@ for(k=1;k<c-1;k=k+r+1){
 	}*/
 }
 
-/*fine function*/	
+/*end function*/	
 }	
